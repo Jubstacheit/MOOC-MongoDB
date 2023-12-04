@@ -29,6 +29,9 @@ const userSchema = Schema({
 			message: "{VALUE} is not supported",
 		},
 	},
+	age: {
+		type: Number
+	},
 });
 
 module.exports = model("User", userSchema);
