@@ -5,7 +5,7 @@ class userService {
 		return User.find({}, '-password');
 	}
 	get(id) {
-		return User.findById(id);
+		return User.findById(id, '-password');
 	}
 
 	create(data) {
@@ -17,6 +17,12 @@ class userService {
 		return User.findByIdAndUpdate(id, data, {
 			new: true
 		});
+	}
+
+	delete(id) {
+		return User.deleteOne({
+			_id: id
+		})
 	}
 }
 

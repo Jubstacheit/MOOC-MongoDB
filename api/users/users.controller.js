@@ -17,6 +17,8 @@ class UsersController {
 			if (!user) {
 				throw new NotFoundError('User not found');
 			}
+			user.password = undefined;
+			res.json(user);
 		} catch (error) {
 			next(error);
 		}
@@ -39,6 +41,16 @@ class UsersController {
 			const userModified = await usersServices.update(id, data);
 			userModified.password = undefined;
 			res.json(userModified);
+		} catch (error) {
+			next(error);
+		}
+	}
+
+	async delete(req, res, next) {
+		try {
+			const id = req.params.id;
+			await usersServices.delete(id);
+			res.status(204).send();
 		} catch (error) {
 			next(error);
 		}
