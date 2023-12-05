@@ -1,7 +1,6 @@
-const {app} = require('../server');
+const { app } = require('../server');
 const config = require('../config');
 const mongoose = require('mongoose');
-const e = require('express');
 
 mongoose.connect(config.mongoUri)
 
@@ -11,7 +10,7 @@ db.on('error', (err) => {
 	console.log(e)
 });
 
-db.once('open', () => {
+db.on("open", () => {
 	console.log(`MongoDB connected on ${config.mongoUri}`)
 });
 
